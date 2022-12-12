@@ -1,2 +1,16 @@
 [
+   {
+      "title": "10 prod",
+      "description": "10 prod guardado",
+      "price": 1000,
+      "code": "a",
+      "pid": 1
+   },
+   {
+      "title": "primer prod",
+      "description": "primer prod guardado",
+      "price": 100,
+      "code": "C04",
+      "pid": 2
+   }
 ]

@@ -1,1 +1,16 @@
-[]
+[
+   {
+      "cid": 2,
+      "productsInCart": {
+         "quantity": 1,
+         "pid": 1
+      }
+   },
+   {
+      "cid": 3,
+      "productsInCart": {
+         "quantity": 1,
+         "pid": 2
+      }
+   }
+]

@@ -11,16 +11,15 @@ router.use(function(req, res, next) {
 
 router.get('/', async (req, res) => {
     try {
-        const {limit, skip} = req.query
+        const {limit} = req.query
     
-        const cart = await productManager.getCart()
+        const cart = await cartManager.getCart()
     //determina el query
         if (!limit || limit < 1){
             return res.send({success: true, products: cart});
         }
     //devuelve los productos por query
-        const carts = cart.slice(0,limit) //crear un paginado
-        //const products = allProducts.slice((skip ?? 0, limit + skip) || limit) //crear un paginado
+        const carts = cart.slice(0,limit)
         res.send({success: true, carts});
         
     } catch (error) {
@@ -53,6 +52,35 @@ router.get('/:cid', async (req, res) => {
     }
 })
 
+
+router.post('/', async (req, res) => {
+    try {
+        const product = []
+        //comprobamos las variables si existen 
+        // if(!title || !description || !price || !code) {
+        //     return res.send({success: false, error: "Las variables son obligatorias"})
+        // }
+        //creamos los productos
+        const savedCart  = await cartManager.saveCart({product})
+        res.send({success: true, cart: savedCart})
+
+    } catch (error) {
+        //validacion de error por cliente, por medio de instancias 
+        console.log( error);
+        if(error.name === ERROR.VALIDATION_ERRROR){
+            return res.send({
+                success: false,
+                error: `${error.name}: ${error.message}`
+            })
+        }
+
+        res.send({success: false, error:"▲ EXPLOTO! ▲"})
+    }
+
+})
+
+
+
 router.post('/:cid/product/:pid', async (req, res) => {
     try {
         //obtenemos el carrito
@@ -61,6 +89,10 @@ router.post('/:cid/product/:pid', async (req, res) => {
         const {pid: paramPid }= req.params.pid
         const pid = Number(paramPid)
         //comprobamos las variables si existen 
+
+        console.log(paramCid);
+        console.log(paramPid);
+
         if(!cid || !pid) {
             return res.send({success: false, error: "Las variables son obligatorias"})
         }
