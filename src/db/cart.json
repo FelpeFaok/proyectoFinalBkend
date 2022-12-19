@@ -1,9 +1,16 @@
 [
    {
+      "cid": 1,
+      "productsInCart": {
+         "quantity": 1,
+         "pid": 2
+      }
+   },
+   {
       "cid": 2,
       "productsInCart": {
          "quantity": 1,
-         "pid": 1
+         "pid": 2
       }
    },
    {

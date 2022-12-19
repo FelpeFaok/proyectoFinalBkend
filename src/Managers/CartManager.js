@@ -56,8 +56,9 @@ export class CartManagerFilesystem {
         await this.#writefile(allProducts)
 
         return allProducts[productIndex]
-    
     }
+
+
 
     async saveCart( {cid, productsInCart, quantity, pid}){
         const cart = await this.getCart();
@@ -66,7 +67,9 @@ export class CartManagerFilesystem {
         const products = {quantity, pid}
         products.pid = product.pid
         products.quantity = 1
-
+        if (product.quantity === 1){
+            product.quantity = product.quantity+1
+        }
         const newCart = {cid, productsInCart};
 
         newCart.productsInCart = products

@@ -114,4 +114,4 @@ router.post('/:cid/product/:pid', async (req, res) => {
     }
 });
 
-export default router
+export { router as cartRouter}

@@ -67,7 +67,10 @@ router.post('/', async (req, res) => {
         }
         //creamos los productos
         const savedProduct  = await productManager.saveProduct({title, description, price, code})
-        res.send({success: true, product: savedProduct})
+        // req.io.sockets.emit("hello", "hola")
+        // req.get('io').sockets.emit("hello", "hola")
+
+        return res.send({success: true, product: savedProduct})
 
     } catch (error) {
         //validacion de error por cliente, por medio de instancias 
@@ -144,4 +147,4 @@ router.delete('/:pid', async (req, res) => {
 })
 
 
-export default router
+export { router as productsRouter}
